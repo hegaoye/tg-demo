@@ -16,9 +16,8 @@ async def start(update: Update, context: CallbackContext):
     # converting layout to markup
     # documentation: https://python-telegram-bot.readthedocs.io/en/stable/telegram.replykeyboardmarkup.html
     kbd = ReplyKeyboardMarkup(kbd_layout)
-
-    # sending the reply so as to activate the keyboard
-    await update.message.reply_text(text="游戏开始，你选择了：", reply_markup=kbd)
+    username = update.effective_user.username
+    await update.message.reply_text(text="@" + username + " 游戏开始", reply_markup=kbd)
 
 
 async def remove(update: Update, context: CallbackContext):
@@ -31,7 +30,7 @@ async def remove(update: Update, context: CallbackContext):
     reply_markup = ReplyKeyboardRemove()
 
     # sending the reply so as to remove the keyboard
-    await update.message.reply_text(text="I'm back.", reply_markup=reply_markup)
+    await update.message.reply_text(text="暂停游戏", reply_markup=reply_markup)
 
 
 async def echo(update: Update, context: CallbackContext):
@@ -39,12 +38,13 @@ async def echo(update: Update, context: CallbackContext):
     message to handle any "Option [0-9]" Regrex.
     """
     # sending the reply message with the selected option
-    await update.message.reply_text("You just clicked on '%s'" % update.message.text)
+    username = update.effective_user.username
+    await update.message.reply_text("@" + username + " 点击了 '%s'" % update.message.text)
 
 
 application.add_handler(CommandHandler("start", start))
 application.add_handler(CommandHandler("stop", remove))
 application.add_handler(CommandHandler("help", remove))
-application.add_handler(MessageHandler(filters.Regex(r"Option [0-9]"), callback=echo))
+application.add_handler(MessageHandler(filters.TEXT, callback=echo))
 
 application.run_polling()
