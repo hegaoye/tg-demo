@@ -27,6 +27,9 @@ class GameContextHandler:
         """
         click_button_text = update.message.text
         logging.info("收到消息：%s", click_button_text)
+        logging.info("GameContextHandler:%s",update.effective_user.id)
+        logging.info("GameContextHandler:%s",update.effective_user.username)
+
         if click_button_text.__eq__(Command.APPLET.value):
             await context.bot.send_game(
                 chat_id=update.effective_chat.id,

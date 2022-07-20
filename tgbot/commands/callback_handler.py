@@ -15,6 +15,6 @@ class CallbackHandler:
         callback method handling button press
         """
         query: CallbackQuery = update.callback_query
-        logging.info(update.effective_user.id)
-        logging.info(update.effective_user.username)
+        logging.info("CallbackHandler:%s", update.effective_user.id)
+        logging.info("CallbackHandler:%s", update.effective_user.username)
         await query.answer(text="open", url=self.sys_conf.game_url)

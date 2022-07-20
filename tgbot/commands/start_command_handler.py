@@ -16,7 +16,9 @@ class StartCommandHandler:
         method to handle the /start command and create keyboard
         """
 
-        logging.debug(self.sys_conf.begain_words)
+        logging.info(self.sys_conf.begain_words)
+        logging.info("StartCommandHandler:%s", update.effective_user.id)
+        logging.info("StartCommandHandler:%s", update.effective_user.username)
 
         # 键盘布局
         kbd_layout = [
