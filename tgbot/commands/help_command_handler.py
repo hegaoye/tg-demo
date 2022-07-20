@@ -15,7 +15,7 @@ class HelpCommandHandler:
         # sending the reply message with the selected option
 
         username = update.effective_user.username
-        await update.message.reply_text("@" + username + " 点击了 '%s'" % update.message.text)
+        await update.message.reply_text("@" + username + " 以下是使用指南")
         await context.bot.send_document(
             chat_id=update.effective_chat.id,
             document=open("/Users/watson/PycharmProjects/tg-demo2/images/庄家操作指南.pdf", 'rb')
