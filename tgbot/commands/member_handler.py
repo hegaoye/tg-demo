@@ -20,7 +20,10 @@ class MemberJoinOrLeftGroupHandler:
         new_users = update.message.new_chat_members
         if new_users:
             for new_user in new_users:
-                await update.message.reply_text(self.new_user_join_group(new_user))
+                await context.bot.send_message(
+                    chat_id=update.effective_chat.id,
+                    text=self.new_user_join_group(new_user),
+                )
 
     def new_user_join_group(self, user) -> str:
         logging.info("ChatJoinRequestHandler 加入群:-%s -%s", user.username, user.id)
