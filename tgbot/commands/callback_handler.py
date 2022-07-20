@@ -1,3 +1,5 @@
+import logging
+
 from telegram import Update, CallbackQuery
 from telegram.ext import CallbackContext
 
@@ -13,4 +15,6 @@ class CallbackHandler:
         callback method handling button press
         """
         query: CallbackQuery = update.callback_query
+        logging.info(update.effective_user.id)
+        logging.info(update.effective_user.username)
         await query.answer(text="open", url=self.sys_conf.game_url)
