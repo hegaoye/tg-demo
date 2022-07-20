@@ -1,14 +1,10 @@
-from telegram import Update
-from telegram.ext import CallbackContext, CommandHandler, Application
+# coding=utf-8
+import logging
 
-application = Application.builder().token("5512528385:AAFVl3eu7EMoAKIgLyoc3Pmq-wDvRF1vf40").build()
+from src.service.bot_service import BotService
 
-
-async def generate(update: Update, context: CallbackContext):
-    # initializing the bot with API
-    info = context.bot.bot
-    print(info)
-
-
-application.add_handler(CommandHandler("start", generate))
-application.run_polling()
+if __name__ == '__main__':
+    logging.info("启动程序>>>")
+    bot_service = BotService()
+    bot_service.run()
+    logging.info("<<<启动程序成功")
