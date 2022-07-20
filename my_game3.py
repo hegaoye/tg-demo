@@ -3,7 +3,6 @@ from telegram.ext import Application, CommandHandler, MessageHandler, CallbackCo
 
 application = Application.builder().token("5241392506:AAFm2rwARsgBOmmf9Zw9vVfqANcs3-cdBr8").build()
 
-
 async def start(update: Update, context: CallbackContext):
     """
     method to handle the /start command and create keyboard
