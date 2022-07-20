@@ -27,7 +27,8 @@ class MemberJoinOrLeftGroupHandler:
                 )
 
     def new_user_join_group(self, user) -> str:
-        logging.info("ChatJoinRequestHandler 加入群:-%s -%s", user.username, user.id)
+        logging.info("ChatJoinRequestHandler 加入群:-%s -%s -%s -%s", user.username, user.id, user.first_name,
+                     user.language_code)
 
         reply_text = """
         欢迎 @{at} 加入
