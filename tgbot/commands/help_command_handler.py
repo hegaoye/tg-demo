@@ -16,7 +16,15 @@ class HelpCommandHandler:
 
         username = update.effective_user.username
         await update.message.reply_text("@" + username + " 点击了 '%s'" % update.message.text)
-        await context.bot.send_photo(
+        await context.bot.send_document(
             chat_id=update.effective_chat.id,
-            photo=open("/Users/watson/PycharmProjects/tg-bot/img_1.png", 'rb')
+            document=open("/Users/watson/PycharmProjects/tg-demo2/images/庄家操作指南.pdf", 'rb')
         )
+        await context.bot.send_document(
+            chat_id=update.effective_chat.id,
+            document=open("/Users/watson/PycharmProjects/tg-demo2/images/玩家操作指南.pdf", 'rb')
+        )
+        # await context.bot.send_photo(
+        #     chat_id=update.effective_chat.id,
+        #     photo=open("/Users/watson/PycharmProjects/tg-bot/img_1.png", 'rb')
+        # )
