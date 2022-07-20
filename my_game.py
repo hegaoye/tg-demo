@@ -37,8 +37,8 @@ async def start(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
     # sending the message to the current chat id
     # documentation: https://python-telegram-bot.readthedocs.io/en/stable/telegram.message.html#telegram.Message.reply_text
-    await update.message.reply_game(game_short_name="thisiswatsonsdemogame")
-    # await update.message.reply_game(game_short_name="thisiswatsonsdemogame", reply_markup=reply_markup)
+    # await update.message.reply_game(game_short_name="thisiswatsonsdemogame")
+    await update.message.reply_game(game_short_name="thisiswatsonsdemogame", reply_markup=reply_markup)
     # await update.message.reply_text('Please choose:', reply_markup=reply_markup)
 
 
