@@ -1,7 +1,7 @@
 from telegram import Update, ReplyKeyboardRemove, ReplyKeyboardMarkup, CallbackQuery
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackContext, filters, CallbackQueryHandler
 
-application = Application.builder().token("5512528385:AAFVl3eu7EMoAKIgLyoc3Pmq-wDvRF1vf40").build()
+application = Application.builder().token("5241392506:AAFm2rwARsgBOmmf9Zw9vVfqANcs3-cdBr8").build()
 
 
 async def start(update: Update, context: CallbackContext):
@@ -53,7 +53,7 @@ async def send_game_message(update: Update, context: CallbackContext):
     if click_button_text.__contains__('小程序'):
         await context.bot.send_game(
             chat_id=update.effective_chat.id,
-            game_short_name="juncaixingchigame"
+            game_short_name="zijietiaodonggame"
         )
     elif click_button_text.__contains__('大'):
         username = update.effective_user.username
