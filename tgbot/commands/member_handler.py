@@ -13,6 +13,7 @@ class MemberJoinOrLeftGroupHandler:
     async def handle(self, update: Update, context: CallbackContext):
         logging.info("ChatJoinRequestHandler:%s", update.effective_user.id)
         logging.info("ChatJoinRequestHandler:%s", update.effective_user.username)
+
         user = update.message.left_chat_member
         if user:
             self.user_left_group(user)
