@@ -1,23 +1,26 @@
+import logging
+
 from telegram import Update, ReplyKeyboardRemove, ReplyKeyboardMarkup, CallbackQuery
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackContext, filters, CallbackQueryHandler
 
-from src.base.sys_confg import SysConf
+from tgbot.base.sys_confg import SysConf
+from tgbot.commands.commands import Command
 
 
 class BotService:
 
     def __init__(self):
-        sys_conf = SysConf()
-        self.application = Application.builder().token(sys_conf.bot_token).build()
+        self.sys_conf = SysConf()
+        self.application = Application.builder().token(self.sys_conf.bot_token).build()
 
     def run(self):
         """
         启动
         :return:
         """
-        self.application.add_handler(CommandHandler("start", self.start))
-        self.application.add_handler(CommandHandler("stop", self.stop))
-        self.application.add_handler(CommandHandler("help", self.help))
+        self.application.add_handler(CommandHandler(Command.HELP_EN.value, self.start))
+        self.application.add_handler(CommandHandler(Command.STOP.value, self.stop))
+        self.application.add_handler(CommandHandler(Command.HELP_EN.value, self.help))
 
         self.application.add_handler(CallbackQueryHandler(self.button))
         self.application.add_handler(MessageHandler(filters.TEXT, callback=self.send_game_message))
@@ -30,14 +33,14 @@ class BotService:
 
         # defining the keyboard layout
         kbd_layout = [
-            ['/大 50', '/小 50', '/单 50', '/双 50'],
-            ['/查看投注', '/小程序', '/帮助']
+            [Command.BIG.value, Command.SMALL.value, Command.ODD.value, Command.EVEN.value],
+            [Command.QUERY_BET.value, Command.APPLET.value, Command.HELP_CN.value]
         ]
 
         kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text="欢迎使用星彩娱乐",
+            text=self.sys_conf.begain_words,
             reply_markup=kbd
         )
 
@@ -67,34 +70,34 @@ class BotService:
         {at}
         """
         click_button_text = update.message.text
-        print("收到消息：", click_button_text)
+        logging.info("收到消息：%s", click_button_text)
 
-        if click_button_text.__eq__('/小程序'):
+        if click_button_text.__eq__(Command.APPLET.value):
             await context.bot.send_game(
                 chat_id=update.effective_chat.id,
                 game_short_name="zijietiaodonggame"
             )
-        elif click_button_text.__contains__('/大 50'):
+        elif click_button_text.__eq__(Command.BIG.value):
             username = update.effective_user.username
             text = issue.format(at="@" + username, big="50", small="0", even="0", odd="0", num="无")
             await update.message.reply_text(text)
-        elif click_button_text.__contains__('/小 50'):
+        elif click_button_text.__eq__(Command.SMALL.value):
             username = update.effective_user.username
             text = issue.format(at="@" + username, big="0", small="50", even="0", odd="0", num="无")
             await update.message.reply_text(text)
-        elif click_button_text.__contains__('/单 50'):
+        elif click_button_text.__eq__(Command.ODD.value):
             username = update.effective_user.username
             text = issue.format(at="@" + username, big="0", small="0", even="50", odd="0", num="无")
             await update.message.reply_text(text)
-        elif click_button_text.__contains__('/双 50'):
+        elif click_button_text.__eq__(Command.EVEN.value):
             username = update.effective_user.username
             text = issue.format(at="@" + username, big="0", small="0", even="0", odd="50", num="无")
             await update.message.reply_text(text)
-        elif click_button_text.__contains__('/查看投注'):
+        elif click_button_text.__eq__(Command.QUERY_BET.value):
             username = update.effective_user.username
             await update.message.reply_text("@" + username + " 点击了 '%s'" % update.message.text + "，查询投注中，请稍等")
-        elif click_button_text.__contains__('/帮助'):
-            self.help(update, context)
+        elif click_button_text.__eq__(Command.HELP_CN.value):
+            await self.help(update, context)
 
     async def button(self, update, context: CallbackContext):
         """

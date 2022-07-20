@@ -2,7 +2,7 @@
 import os
 import shutil
 
-from src.base.singleton import Singleton
+from tgbot.base.singleton import Singleton
 
 
 class FileTool(Singleton):

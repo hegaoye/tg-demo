@@ -2,8 +2,8 @@
 import json
 from urllib import request
 
-from src.base.log4py import logger
-from src.base.r import R
+from tgbot.base.log4py import logger
+from tgbot.base.r import R
 
 
 def get(url, token=None):

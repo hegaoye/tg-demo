@@ -1,7 +1,7 @@
 # coding=utf-8
 import logging
 
-from src.service.bot_service import BotService
+from tgbot.service.bot_service import BotService
 
 if __name__ == '__main__':
     logging.info("启动程序>>>")
