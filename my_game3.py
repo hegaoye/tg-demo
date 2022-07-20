@@ -11,8 +11,8 @@ async def start(update: Update, context: CallbackContext):
 
     # defining the keyboard layout
     kbd_layout = [
-        ['大 50', '小 50', '单 50', '双 50'],
-        ['查看投注', '小程序', '帮助']
+        ['/大 50', '/小 50', '/单 50', '/双 50'],
+        ['/查看投注', '/小程序', '/帮助']
     ]
 
     kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
@@ -50,31 +50,33 @@ async def send_game_message(update: Update, context: CallbackContext):
     {at}
     """
     click_button_text = update.message.text
-    if click_button_text.__contains__('小程序'):
+    print("收到消息：", click_button_text)
+
+    if click_button_text.__eq__('/小程序'):
         await context.bot.send_game(
             chat_id=update.effective_chat.id,
             game_short_name="zijietiaodonggame"
         )
-    elif click_button_text.__contains__('大'):
+    elif click_button_text.__contains__('/大 50'):
         username = update.effective_user.username
-        text = issue.format(at="@" + username, big=update.message.text, small="0", even="0", odd="0", num="无")
+        text = issue.format(at="@" + username, big="50", small="0", even="0", odd="0", num="无")
         await update.message.reply_text(text)
-    elif click_button_text.__contains__('小'):
+    elif click_button_text.__contains__('/小 50'):
         username = update.effective_user.username
-        text = issue.format(at="@" + username, big="0", small=update.message.text, even="0", odd="0", num="无")
+        text = issue.format(at="@" + username, big="0", small="50", even="0", odd="0", num="无")
         await update.message.reply_text(text)
-    elif click_button_text.__contains__('单'):
+    elif click_button_text.__contains__('/单 50'):
         username = update.effective_user.username
-        text = issue.format(at="@" + username, big="0", small="0", even=update.message.text, odd="0", num="无")
+        text = issue.format(at="@" + username, big="0", small="0", even="50", odd="0", num="无")
         await update.message.reply_text(text)
-    elif click_button_text.__contains__('双'):
+    elif click_button_text.__contains__('/双 50'):
         username = update.effective_user.username
-        text = issue.format(at="@" + username, big="0", small="0", even="0", odd=update.message.text, num="无")
+        text = issue.format(at="@" + username, big="0", small="0", even="0", odd="50", num="无")
         await update.message.reply_text(text)
-    elif click_button_text.__contains__('投注'):
+    elif click_button_text.__contains__('/查看投注'):
         username = update.effective_user.username
         await update.message.reply_text("@" + username + " 点击了 '%s'" % update.message.text + "，查询投注中，请稍等")
-    elif click_button_text.__contains__('帮助'):
+    elif click_button_text.__contains__('/帮助'):
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             photo=open("/Users/watson/PycharmProjects/tg-bot/img_1.png", 'rb')
