@@ -1,10 +1,15 @@
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler
+import logging
+
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, \
+    CallbackContext
 
 from tgbot.base.sys_confg import SysConf
 from tgbot.commands.callback_handler import CallbackHandler
 from tgbot.commands.commands import Command
 from tgbot.commands.game_context_handler import GameContextHandler
 from tgbot.commands.help_command_handler import HelpCommandHandler
+from tgbot.commands.member_handler import MemberJoinOrLeftGroupHandler
 from tgbot.commands.start_command_handler import StartCommandHandler
 from tgbot.commands.stop_command_handler import StopCommandHandler
 
@@ -26,4 +31,10 @@ class BotService:
 
         self.application.add_handler(CallbackQueryHandler(CallbackHandler().handle))
         self.application.add_handler(MessageHandler(filters.TEXT, callback=GameContextHandler().handle))
+        self.application.add_handler(MessageHandler(filters.CHAT, callback=MemberJoinOrLeftGroupHandler().handle))
+
         self.application.run_polling()
+
+    async def callback(self, update: Update, context: CallbackContext):
+        logging.info("ChatJoinRequestHandler:%s", update.effective_user.id)
+        logging.info("ChatJoinRequestHandler:%s", update.effective_user.username)
