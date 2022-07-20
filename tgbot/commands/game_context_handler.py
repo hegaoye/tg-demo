@@ -18,12 +18,12 @@ class GameContextHandler:
         """
         issue = """
         第20220720888期合计投注:
-    大:{big}
-    小:{small}
-    单:{even}
-    双:{odd}
-    号码:{num}
-    {at}
+大:{big}
+小:{small}
+单:{even}
+双:{odd}
+号码:{num}
+{at}
         """
         click_button_text = update.message.text
         logging.info("收到消息：%s", click_button_text)
