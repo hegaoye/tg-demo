@@ -18,11 +18,11 @@ class HelpCommandHandler:
         await update.message.reply_text("@" + username + " 以下是使用指南")
         await context.bot.send_document(
             chat_id=update.effective_chat.id,
-            document=open("/Users/watson/PycharmProjects/tg-demo2/images/庄家操作指南.pdf", 'rb')
+            document=open("images/庄家操作指南.pdf", 'rb')
         )
         await context.bot.send_document(
             chat_id=update.effective_chat.id,
-            document=open("/Users/watson/PycharmProjects/tg-demo2/images/玩家操作指南.pdf", 'rb')
+            document=open("images/玩家操作指南.pdf", 'rb')
         )
         # await context.bot.send_photo(
         #     chat_id=update.effective_chat.id,
