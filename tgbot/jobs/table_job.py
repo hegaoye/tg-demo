@@ -1,4 +1,6 @@
 # coding=utf-8
+import time
+
 from telegram.ext import Application
 
 from tgbot.base.sys_confg import SysConf
@@ -31,7 +33,7 @@ BTC/USDT: 23673.6
 无人投注
 
 第202207201920期
-开奖时间：2022-07-20 19:20
+开奖时间：{open_time}
 投注中...
 本期枱红 10000 试玩
 两面赔率 1.96
@@ -40,6 +42,7 @@ BTC/USDT: 23673.6
 号码赔率 9.8
 号码限红 10 ~ 500
         """
+        open_time = time.strftime("%Y-%m-%d %H:%M", time.localtime())
         bot = self.application.bot
         await bot.send_photo(
             chat_id="-1001713031902",
@@ -47,4 +50,4 @@ BTC/USDT: 23673.6
 
         await bot.send_message(
             chat_id="-1001713031902",
-            text=result)
+            text=result.format(open_time=open_time))
