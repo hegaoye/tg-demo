@@ -16,3 +16,4 @@ sniffio
 tornado==6.2
 tzdata==2022.1
 tzlocal==4.2
+plotly~=5.9.0

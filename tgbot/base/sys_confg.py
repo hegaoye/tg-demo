@@ -18,5 +18,6 @@ class SysConf:
             self.begain_words = cfg.read("sys", "begain_words")
             self.game_short_name = cfg.read("sys", "game_short_name")
             self.game_url = cfg.read("sys", "game_url")
+            self.group_id = cfg.read("sys", "group_id")
         except Exception as e:
             logger.error("sys-sample.conf 找不到錯誤-%s", e)

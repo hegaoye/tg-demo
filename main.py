@@ -9,7 +9,7 @@ from tgbot.service.bot_service import BotService
 if __name__ == '__main__':
     logging.info("启动程序>>>")
     scheduler = AsyncIOScheduler(timezone='Asia/Shanghai')
-    #每2分鐘
+    # 每2分鐘
     scheduler.add_job(TableJob().run, "cron", minute='*/2')
     scheduler.start()
 
