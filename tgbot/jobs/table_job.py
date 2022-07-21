@@ -45,9 +45,9 @@ BTC/USDT: 23673.6
         open_time = time.strftime("%Y-%m-%d %H:%M", time.localtime())
         bot = self.application.bot
         await bot.send_photo(
-            chat_id="-1001713031902",
+            chat_id=self.sys_conf.group_id,
             photo=open("images/table.jpg", 'rb'))
 
         await bot.send_message(
-            chat_id="-1001713031902",
+            chat_id=self.sys_conf.group_id,
             text=result.format(open_time=open_time))
