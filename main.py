@@ -10,7 +10,6 @@ if __name__ == '__main__':
     logging.info("启动程序>>>")
     scheduler = AsyncIOScheduler(timezone='Asia/Shanghai')
     # 每2分鐘
-    # scheduler.add_job(TableJob().run, CronTrigger.from_crontab('*/2 * * * *'))
     scheduler.add_job(TableJob().run, "cron", minute='*/2')
     scheduler.start()
 

@@ -20,6 +20,9 @@ sched.add_job(my_job(), 'cron', day_of_week='mon-fri', hour=5, minute=30, end_da
 
 # 表示每5秒执行该程序一次，相当于interval 间隔调度中seconds = 5
 sched.add_job(my_job, 'cron', second='*/5')
+
+# 每兩分鐘一次
+scheduler.add_job(TableJob().run, CronTrigger.from_crontab('*/2 * * * *'))
 ```
 
 ### interval 模式
