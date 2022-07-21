@@ -46,7 +46,7 @@ BTC/USDT: 23673.6
         bot = self.application.bot
         await bot.send_photo(
             chat_id="-1001713031902",
-            photo=open("/Users/watson/PycharmProjects/tg-demo2/images/table.jpg", 'rb'))
+            photo=open("images/table.jpg", 'rb'))
 
         await bot.send_message(
             chat_id="-1001713031902",
