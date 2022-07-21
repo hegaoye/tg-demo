@@ -1,8 +1,4 @@
-import logging
-
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, \
-    CallbackContext
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler
 
 from tgbot.base.sys_confg import SysConf
 from tgbot.commands.callback_handler import CallbackHandler
@@ -34,7 +30,3 @@ class BotService:
         self.application.add_handler(MessageHandler(filters.CHAT, callback=MemberJoinOrLeftGroupHandler().handle))
 
         self.application.run_polling()
-
-    async def callback(self, update: Update, context: CallbackContext):
-        logging.info("ChatJoinRequestHandler:%s", update.effective_user.id)
-        logging.info("ChatJoinRequestHandler:%s", update.effective_user.username)
