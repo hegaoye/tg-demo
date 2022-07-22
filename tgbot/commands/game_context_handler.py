@@ -3,6 +3,7 @@ import logging
 from telegram import Update
 from telegram.ext import CallbackContext
 
+from tgbot.api.bet_api_client import BetApiClient
 from tgbot.base.sys_confg import SysConf
 from tgbot.commands.commands import Command
 from tgbot.commands.help_command_handler import HelpCommandHandler
@@ -17,6 +18,7 @@ class GameContextHandler:
     def __init__(self):
         self.sys_conf = SysConf()
         self.bet_order_service = BetOrderService()
+        self.bet_api_client = BetApiClient()
 
     async def handle(self, update: Update, context: CallbackContext):
         """
@@ -47,6 +49,12 @@ class GameContextHandler:
             await HelpCommandHandler().handle(update, context)
 
         else:
+            # 檢查是否封盤，或者暫停
+            is_start = self.bet_api_client.check_status(chat_id, bot_id)
+            if not is_start:
+                await update.message.reply_text('封盘或者暂停游戏无法投注.')
+                return
+
             if click_button_text.__eq__(Command.BIG.value):
                 # 投注金额
                 bet_money = 50
