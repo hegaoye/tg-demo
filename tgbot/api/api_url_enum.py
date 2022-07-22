@@ -12,6 +12,11 @@ class Api(Enum):
     USER_BUILD_URL = "{host}/user/build"
 
     """
+    退群 put
+    """
+    LEFT_GROUP_URL = "{host}/user/left"
+
+    """
     创建投注订单 post
     """
     BET_ORDER_BUILD_URL = "{host}/betOrder/build"
@@ -22,14 +27,14 @@ class Api(Enum):
     GET_BET_ORDER_URL = "{host}/betOrder/load/{group_id}/{user_id}/{bot_id}"
 
     """
+    投注订单统计
+    """
+    BET_ORDER_COUNT_URL = "{host}/betOrder/count/{group_id}"
+
+    """
     查詢群是否存在 get
     """
     GET_GROUP_URL = "{host}/group/load/{group_id}/{bot_id}"
-
-    """
-    退群 put
-    """
-    LEFT_GROUP_URL = "{host}/group/left"
 
     """
     投注開啟 put
@@ -45,3 +50,8 @@ class Api(Enum):
     檢查投注狀態 get
     """
     CHECK_BET_STATUS_URL = "{host}/bet/check/status/{group_id}/{bot_id}"
+
+    """
+    走势图统计
+    """
+    TREND_TABLE_URL = "{host}/trendRecord/count/{group_id}"

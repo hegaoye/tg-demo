@@ -49,3 +49,20 @@ class BetOrderApiClient:
             logging.error("拉取本机需要启动的容器数量发生错误={}", e)
 
         return ""
+
+    def bet_order_count(self, chat_id):
+        """
+        投注订单统计
+        """
+        url = Api.BET_ORDER_COUNT_URL.value.format(host=self.__host, group_id=chat_id)
+        logging.info('投注订单统计,url=====> %s', url)
+        try:
+            beanret = http.get(url)
+            logging.info('投注订单统计 <===== %s', beanret)
+
+            if not beanret.code.__eq__(ResponseCode.Success.value):
+                return beanret.data
+        except Exception as e:
+            logging.error("投注订单统计发生错误={}", e)
+
+        return ""
