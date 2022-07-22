@@ -13,8 +13,12 @@ class MemberJoinOrLeftGroupHandler:
         self.user_api_client = UserApiClient()
 
     async def handle(self, update: Update, context: CallbackContext):
-        logging.info("ChatJoinRequestHandler:%s", update.effective_user.id)
-        logging.info("ChatJoinRequestHandler:%s", update.effective_user.username)
+        """
+        用户异动信息
+        加群，退群等
+        """
+        logging.info("MemberJoinOrLeftGroupHandler:%s", update.effective_user.id)
+        logging.info("MemberJoinOrLeftGroupHandler:%s", update.effective_user.username)
 
         bot = context.bot
         bot_id = bot.id
