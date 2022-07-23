@@ -66,4 +66,4 @@ class BetOrderApiClient(Singleton):
         except Exception as e:
             logging.error("投注订单统计发生错误={}", e)
 
-        return ""
+        return None

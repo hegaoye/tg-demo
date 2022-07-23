@@ -57,4 +57,5 @@ class TableJob:
 
         # 发送投注报表
         result = self.bet_order_api_client.bet_order_count(self.baseHandler.group_id)
-        await bot.send_message(chat_id=self.baseHandler.group_id, text=result)
+        if result:
+            await bot.send_message(chat_id=self.baseHandler.group_id, text=result)
