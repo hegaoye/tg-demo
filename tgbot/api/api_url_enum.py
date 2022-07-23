@@ -49,12 +49,12 @@ class Api(Enum):
     """
     投注開啟 put
     """
-    BET_START_URL = "{host}/bet/start/{group_id}/{bot_id}"
+    BET_START_URL = "{host}/bet/start/{group_id}/{bot_id}/{user_id}"
 
     """
     投注關閉 put
     """
-    BET_STOP_URL = "{host}/bet/stop/{group_id}/{bot_id}"
+    BET_STOP_URL = "{host}/bet/stop/{group_id}/{bot_id}/{user_id}"
 
     """
     檢查投注狀態 get

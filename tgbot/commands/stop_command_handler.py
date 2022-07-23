@@ -22,8 +22,9 @@ class StopCommandHandler:
         bot = context.bot
         bot_id = bot.id
         chat_id = update.effective_chat.id
-        is_stop = self.bet_api_client.stop(chat_id, bot_id)
+        user_id = update.effective_user.id
+        is_stop = self.bet_api_client.stop(chat_id, bot_id, user_id)
         if is_stop:
             await update.message.reply_text(text="游戏已被 @" + username + " 暂停")
         else:
-            await update.message.reply_text(text="封盘中游戏无法暂停，仅投注期间可以暂停游戏 @" + username)
+            await update.message.reply_text(text="您不是庄或者管理员或者封盘中游戏均无法暂停游戏 @" + username)

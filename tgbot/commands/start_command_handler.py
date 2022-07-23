@@ -30,6 +30,7 @@ class StartCommandHandler:
         bot = context.bot
         bot_id = bot.id
         chat_id = update.effective_chat.id
+        user_id = update.effective_user.id
         is_legal, data = self.group_api_client.check_group_is_legal(chat_id, bot_id)
         if not is_legal:
             # todo 不合法自動退出當前群操作
@@ -37,9 +38,6 @@ class StartCommandHandler:
 
         group_bet_data = self.group_bet_api_client.get_group_both_sides(chat_id)
         bet_money = int(group_bet_data["defaultMoney"]) if group_bet_data else 50
-
-        # 开启投注
-        self.bet_api_client.start(chat_id, bot_id)
 
         # 键盘布局
         kbd_layout = [
@@ -51,5 +49,11 @@ class StartCommandHandler:
 
         kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
 
-        # 发送消息
-        await context.bot.send_message(chat_id=chat_id, text="游戏已被 @" + username + " 开启，可以开始游戏", reply_markup=kbd)
+        # 开启投注
+        is_start = self.bet_api_client.start(chat_id, bot_id, user_id)
+        if is_start:
+            # 发送消息
+            await context.bot.send_message(chat_id=chat_id, text="游戏已被 @" + username + " 开启，可以开始游戏", reply_markup=kbd)
+        else:
+            await context.bot.send_message(chat_id=chat_id, text="您不是庄或者管理员或者封盘中游戏均无法开启游戏 @" + username,
+                                           reply_markup=kbd)

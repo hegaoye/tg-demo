@@ -12,12 +12,12 @@ class BetApiClient(Singleton):
         self.sys_conf = SysConf()
         self.__host = self.sys_conf.host
 
-    def start(self, chat_id, bot_id) -> bool:
+    def start(self, chat_id, bot_id, user_id) -> bool:
         """
         開啟投注
         """
         try:
-            url = Api.BET_START_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id)
+            url = Api.BET_START_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id, user_id=user_id)
             logging.info('開啟投注,url=====> %s', url)
             data = {
                 "groupId": chat_id,
@@ -33,12 +33,12 @@ class BetApiClient(Singleton):
 
         return False
 
-    def stop(self, chat_id, bot_id) -> bool:
+    def stop(self, chat_id, bot_id, user_id) -> bool:
         """
         關閉投注
         """
         try:
-            url = Api.BET_STOP_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id)
+            url = Api.BET_STOP_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id, user_id=user_id)
             logging.info('關閉投注,url=====> %s', url)
             data = {
                 "groupId": chat_id,
