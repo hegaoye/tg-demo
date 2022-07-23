@@ -17,7 +17,7 @@ def __draw_table(header_values: List[str], cell_values: List[list], fill_colors:
         cells=dict(values=cell_values, line_color=["gray"], fill_color=fill_colors, font=dict(size=11)))])
 
     pio.kaleido.scope.default_width = 300
-    pio.kaleido.scope.default_height = len(cell_values[0]) * 21
+    pio.kaleido.scope.default_height = len(cell_values[0]) * 21+21
     # image_file = "/Users/watson/PycharmProjects/tg-demo2/images/a.jpg"
     image_file = os.path.join(tempfile.gettempdir(), f'trend.jpg')
     # image_file = os.path.join(tempfile.gettempdir(), f'{uuid.uuid4().hex}.jpg')
