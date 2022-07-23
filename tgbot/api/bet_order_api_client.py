@@ -23,7 +23,7 @@ class BetOrderApiClient(Singleton):
 
             beanret = http.post(url, bet)
             logging.info('创建tg 投注订单,返回信息<===== %s', beanret.to_json())
-            if beanret.code.__eq__(ResponseCode.Exists.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 pass
             return True, "投注成功"
         except Exception as e:

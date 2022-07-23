@@ -25,7 +25,7 @@ class BetApiClient(Singleton):
             }
             beanret = http.put(url, data)
             logging.info('開啟投注,返回信息<===== %s', beanret)
-            if beanret.code.__eq__(ResponseCode.Exists.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
         except Exception as e:
