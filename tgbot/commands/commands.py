@@ -57,7 +57,7 @@ class Command(Enum):
         elif text.__contains__(Command.NUM.value):
             bet_num = text_arr[1]
             bet_money = text_arr[2]
-            return Command.EVEN.name, bet_money, bet_num
+            return Command.NUM.name, bet_money, bet_num
 
     def custom_bet(self, text):
         """
