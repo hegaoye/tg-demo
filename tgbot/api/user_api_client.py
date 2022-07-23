@@ -20,14 +20,14 @@ class UserApiClient(Singleton):
             url = Api.USER_BUILD_URL.value.format(host=self.__host)
             logging.info('创建tg用户,url=====> %s', url)
             data = {
-                "tgGroupId": chat_id,
+                "groupId": chat_id,
                 "tgBotId": bot_id,
                 "tgUserId": user_id,
                 "tgUsername": username
             }
             beanret = http.post(url, data)
             logging.info('创建tg用户,返回信息<===== %s', beanret.to_json())
-            if beanret.code.__eq__(ResponseCode.Exists.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return beanret.data
         except Exception as e:
             logging.error(e)
@@ -49,7 +49,7 @@ class UserApiClient(Singleton):
             beanret = http.put(url, data)
 
             logging.info('退群,返回信息<===== %s', beanret)
-            if beanret.code.__eq__(ResponseCode.Exists.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
         except Exception as e:
