@@ -2,7 +2,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 from tgbot.base.sys_confg import SysConf
 from tgbot.commands.app_command_handler import AppCommandHandler
-from tgbot.commands.bet_big_command_handler import BetCommandHandler
+from tgbot.commands.bet_command_handler import BetCommandHandler
 from tgbot.commands.bye_command_handler import ByeCommandHandler
 from tgbot.commands.callback_handler import CallbackHandler
 from tgbot.commands.commands import Command

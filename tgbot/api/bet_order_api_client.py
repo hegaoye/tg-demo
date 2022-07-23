@@ -12,7 +12,7 @@ class BetOrderApiClient(Singleton):
         self.sys_conf = SysConf()
         self.__host = self.sys_conf.host
 
-    def build(self, bet) -> bool:
+    def build(self, bet):
         """
         创建投注订单
         :param bet: 投注数据
