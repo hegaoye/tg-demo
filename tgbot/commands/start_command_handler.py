@@ -38,8 +38,8 @@ class StartCommandHandler:
 
         # 键盘布局
         kbd_layout = [
-            [Command.BIG.value, Command.SMALL.value, Command.ODD.value, Command.EVEN.value],
-            [Command.QUERY_BET.value, Command.APPLET.value, Command.HELP_CN.value]
+            [Command.BIG_KEYBOARD.value, Command.SMALL_KEYBOARD.value, Command.ODD_KEYBOARD.value, Command.EVEN_KEYBOARD.value],
+            [Command.QUERY_BET_KEYBOARD.value, Command.APPLET_KEYBOARD.value, Command.HELP_KEYBOARD.value]
         ]
 
         kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
