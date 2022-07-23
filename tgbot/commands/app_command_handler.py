@@ -1,12 +1,12 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from tgbot.base.sys_confg import SysConf
+from tgbot.commands.base_handler import BaseHandler
 
 
-class AppCommandHandler:
+class AppCommandHandler(BaseHandler):
     def __init__(self):
-        self.sys_conf = SysConf()
+        BaseHandler.__init__(self)
 
     async def handle(self, update: Update, context: CallbackContext):
         """
@@ -15,4 +15,4 @@ class AppCommandHandler:
         :param context:
         :return:
         """
-        await context.bot.send_game(chat_id=update.effective_chat.id, game_short_name=self.sys_conf.game_short_name)
+        await context.bot.send_game(chat_id=update.effective_chat.id, game_short_name=self.game_short_name)

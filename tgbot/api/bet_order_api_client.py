@@ -3,10 +3,11 @@ import logging
 from tgbot.api.api_url_enum import Api
 from tgbot.base import http
 from tgbot.base.return_code import ResponseCode
+from tgbot.base.singleton import Singleton
 from tgbot.base.sys_confg import SysConf
 
 
-class BetOrderApiClient:
+class BetOrderApiClient(Singleton):
     def __init__(self):
         self.sys_conf = SysConf()
         self.__host = self.sys_conf.host

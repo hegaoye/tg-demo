@@ -3,12 +3,12 @@ import logging
 from telegram import Update, CallbackQuery
 from telegram.ext import CallbackContext
 
-from tgbot.base.sys_confg import SysConf
+from tgbot.commands.base_handler import BaseHandler
 
 
-class CallbackHandler:
+class CallbackHandler(BaseHandler):
     def __init__(self):
-        self.sys_conf = SysConf()
+        BaseHandler.__init__(self)
 
     async def handle(self, update: Update, context: CallbackContext):
         """
@@ -17,4 +17,4 @@ class CallbackHandler:
         query: CallbackQuery = update.callback_query
         logging.info("CallbackHandler:%s", update.effective_user.id)
         logging.info("CallbackHandler:%s", update.effective_user.username)
-        await query.answer(text="open", url=self.sys_conf.game_url)
+        await query.answer(text="open", url=self.game_url)

@@ -4,7 +4,6 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from tgbot.api.bet_api_client import BetApiClient
-from tgbot.base.sys_confg import SysConf
 from tgbot.commands.app_command_handler import AppCommandHandler
 from tgbot.commands.commands import Command
 from tgbot.commands.help_command_handler import HelpCommandHandler
@@ -18,7 +17,6 @@ class GameContextHandler:
     """
 
     def __init__(self):
-        self.sys_conf = SysConf()
         self.bet_order_service = BetOrderService()
         self.bet_api_client = BetApiClient()
         self.app_command_handler = AppCommandHandler()

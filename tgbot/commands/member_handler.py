@@ -4,12 +4,12 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from tgbot.api.user_api_client import UserApiClient
-from tgbot.base.sys_confg import SysConf
+from tgbot.commands.base_handler import BaseHandler
 
 
-class MemberJoinOrLeftGroupHandler:
+class MemberJoinOrLeftGroupHandler(BaseHandler):
     def __init__(self):
-        self.sys_conf = SysConf()
+        BaseHandler.__init__(self)
         self.user_api_client = UserApiClient()
 
     async def handle(self, update: Update, context: CallbackContext):

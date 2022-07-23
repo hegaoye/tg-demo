@@ -3,10 +3,11 @@ import logging
 from tgbot.api.api_url_enum import Api
 from tgbot.base import http
 from tgbot.base.return_code import ResponseCode
+from tgbot.base.singleton import Singleton
 from tgbot.base.sys_confg import SysConf
 
 
-class GroupApiClient:
+class GroupApiClient(Singleton):
     def __init__(self):
         self.sys_conf = SysConf()
         self.__host = self.sys_conf.host
@@ -25,4 +26,23 @@ class GroupApiClient:
                 return True
         except Exception as e:
             logging.error("檢查群是否合法发生错误={}", e)
-            return False
+
+        return False
+
+    def get_group(self, group_id) -> dict:
+        """
+        獲取群詳情
+        :param group_id: 群id
+        """
+        url = Api.GET_GROUP_BY_ID_URL.value.format(host=self.__host, group_id=group_id)
+        logging.info('獲取群詳情,url=====> %s', url)
+        try:
+            beanret = http.get(url)
+            logging.info('獲取群詳情 <===== %s', beanret)
+
+            if not beanret.code.__eq__(ResponseCode.Success.value):
+                return beanret.data
+        except Exception as e:
+            logging.error("獲取群詳情发生错误={}", e)
+
+        return None

@@ -2,11 +2,12 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from tgbot.base.sys_confg import SysConf
+from tgbot.commands.base_handler import BaseHandler
 
 
-class HelpCommandHandler:
+class HelpCommandHandler(BaseHandler):
     def __init__(self):
-        self.sys_conf = SysConf()
+        BaseHandler.__init__(self)
 
     async def handle(self, update: Update, context: CallbackContext):
         """

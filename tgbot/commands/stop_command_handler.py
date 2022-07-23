@@ -2,12 +2,12 @@ from telegram import Update, ReplyKeyboardRemove
 from telegram.ext import CallbackContext
 
 from tgbot.api.bet_api_client import BetApiClient
-from tgbot.base.sys_confg import SysConf
+from tgbot.commands.base_handler import BaseHandler
 
 
-class StopCommandHandler:
+class StopCommandHandler(BaseHandler):
     def __init__(self):
-        self.sys_conf = SysConf()
+        BaseHandler.__init__(self)
         self.bet_api_client = BetApiClient()
 
     async def handle(self, update: Update, context: CallbackContext):
