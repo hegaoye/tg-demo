@@ -1,3 +1,4 @@
+import re
 from enum import Enum
 
 
@@ -21,6 +22,12 @@ class Command(Enum):
     SMALL = "small"
     ODD = "odd"
     EVEN = "even"
+
+    NUM_CN = "/号码"
+    BIG_CN = "/大"
+    SMALL_CN = "/小"
+    ODD_CN = "/单"
+    EVEN_CN = "/双"
 
     START = "start"
     STOP = "stop"
@@ -52,7 +59,34 @@ class Command(Enum):
             bet_money = text_arr[2]
             return Command.EVEN.name, bet_money, bet_num
 
+    def custom_bet(self, text):
+        """
+        自定义命令匹配
+        :param text:消息
+        :return: 分离投注结果
+        """
+        searchObj = re.search(r'(/(大|小|单|双)\s\d{1,3})|(/号码\s\d{0,9}\s\d{1,3})', text, re.M | re.I)
+        if searchObj:
+            text_arr = str(text).split(" ")
+            bet_money = text_arr[1]
+            if text.__contains__(Command.BIG_CN.value):
+                return Command.BIG.name, bet_money, None
+            elif text.__contains__(Command.SMALL_CN.value):
+                return Command.SMALL.name, bet_money, None
+            elif text.__contains__(Command.ODD_CN.value):
+                return Command.ODD.name, bet_money, None
+            elif text.__contains__(Command.EVEN_CN.value):
+                return Command.EVEN.name, bet_money, None
+            elif text.__contains__(Command.NUM_CN.value):
+                bet_num = text_arr[1]
+                bet_money = text_arr[2]
+                return Command.EVEN.name, bet_money, bet_num
+        else:
+            return None, None, None
+
 
 if __name__ == '__main__':
-    print(Command.INSTANCE.bet("/big 100"))
+    # print(Command.INSTANCE.bet("/big 100"))
     print(Command.INSTANCE.bet("/num 123 100"))
+    print(Command.INSTANCE.custom_bet("/号码 123 100"))
+    print(Command.INSTANCE.custom_bet('/大 100'))

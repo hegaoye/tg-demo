@@ -28,9 +28,9 @@ class GameContextHandler:
         the callback for handling start command
         """
 
-        click_button_text = update.message.text
+        text = update.message.text
 
-        logging.info("收到消息：%s", click_button_text)
+        logging.info("收到消息：%s", text)
         logging.info("GameContextHandler:%s", update.effective_user.id)
         logging.info("GameContextHandler:%s", update.effective_user.username)
         logging.info("GameContextHandler:%s", update.effective_chat.id)
@@ -40,15 +40,15 @@ class GameContextHandler:
         chat_id = update.effective_chat.id
         user_id = update.effective_user.id
 
-        if click_button_text.__eq__(Command.APPLET_KEYBOARD.value):
+        if text.__eq__(Command.APPLET_KEYBOARD.value):
             # 小程序命令
             await self.app_command_handler.handle(update, context)
 
-        elif click_button_text.__eq__(Command.QUERY_BET_KEYBOARD.value):
+        elif text.__eq__(Command.QUERY_BET_KEYBOARD.value):
             # 我投注的订单详情命令
             await self.my_bet_command_handler.handle(update, context)
 
-        elif click_button_text.__eq__(Command.HELP_KEYBOARD.value):
+        elif text.__eq__(Command.HELP_KEYBOARD.value):
             # 帮助命令
             await self.help_command_handler.handle(update, context)
 
@@ -60,24 +60,33 @@ class GameContextHandler:
                 await update.message.reply_text('封盘或者暂停游戏无法投注.')
                 return
 
-            if click_button_text.__eq__(Command.BIG_KEYBOARD.value):
+            bet_num = None
+            if text.__eq__(Command.BIG_KEYBOARD.value):
                 # 投注金额
                 bet_money = 50
-            elif click_button_text.__eq__(Command.SMALL_KEYBOARD.value):
+                bet_code = Command.BIG.name
+            elif text.__eq__(Command.SMALL_KEYBOARD.value):
                 # 投注金额
                 bet_money = 50
-            elif click_button_text.__eq__(Command.ODD_KEYBOARD.value):
+                bet_code = Command.SMALL.name
+            elif text.__eq__(Command.ODD_KEYBOARD.value):
                 # 投注金额
                 bet_money = 50
-            elif click_button_text.__eq__(Command.EVEN_KEYBOARD.value):
+                bet_code = Command.ODD.name
+            elif text.__eq__(Command.EVEN_KEYBOARD.value):
                 # 投注金额
                 bet_money = 50
+                bet_code = Command.EVEN.name
             else:
-                return
+                bet_code, bet_money, bet_num = Command.INSTANCE.custom_bet(text)
+                logging.info("自定义指令投注：%s %s %s", bet_code, bet_money, bet_num)
+
+                if not bet_code:
+                    logging.warning("投注非法 %s", text)
+                    return
 
             # 投注
-            is_build, error = self.bet_order_service.build(chat_id, user_id, Command.BIG_KEYBOARD.name, bot_id,
-                                                           bet_money)
+            is_build, error = self.bet_order_service.build(chat_id, user_id, bet_code, bot_id, bet_money, bet_num)
             if is_build:
                 # 查询投注详情
                 bet_detail = self.bet_order_service.get(chat_id, user_id, bot_id)
