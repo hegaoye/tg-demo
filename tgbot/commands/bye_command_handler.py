@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Update, ReplyKeyboardRemove
 from telegram.ext import CallbackContext
 
 from tgbot.commands.base_handler import baseHandler
@@ -12,19 +12,5 @@ class ByeCommandHandler:
         """
        message to handle any "Option [0-9]" Regrex.
        """
-        # sending the reply message with the selected option
-
-        username = update.effective_user.username
-        await update.message.reply_text("@" + username + " 以下是使用指南")
-        await context.bot.send_document(
-            chat_id=update.effective_chat.id,
-            document=open("images/庄家操作指南.pdf", 'rb')
-        )
-        await context.bot.send_document(
-            chat_id=update.effective_chat.id,
-            document=open("images/玩家操作指南.pdf", 'rb')
-        )
-        # await context.bot.send_photo(
-        #     chat_id=update.effective_chat.id,
-        #     photo=open("/Users/watson/PycharmProjects/tg-bot/img_1.png", 'rb')
-        # )
+        reply_markup = ReplyKeyboardRemove()
+        await update.message.reply_text(text="移除键盘", reply_markup=reply_markup)
