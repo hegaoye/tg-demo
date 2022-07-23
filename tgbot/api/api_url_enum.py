@@ -49,7 +49,7 @@ class Api(Enum):
     """
     檢查投注狀態 get
     """
-    CHECK_BET_STATUS_URL = "{host}/bet/check/status/{group_id}/{bot_id}"
+    CHECK_BET_STATUS_URL = "{host}/bet/status/{group_id}/{bot_id}"
 
     """
     走势图统计
