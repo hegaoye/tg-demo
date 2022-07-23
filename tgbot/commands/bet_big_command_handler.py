@@ -15,17 +15,6 @@ class BetCommandHandler(BaseHandler):
        """
         # sending the reply message with the selected option
 
+        # todo 處理 大小，單雙，數字等投注
         username = update.effective_user.username
         await update.message.reply_text("@" + username + " 以下是使用指南")
-        await context.bot.send_document(
-            chat_id=update.effective_chat.id,
-            document=open("images/庄家操作指南.pdf", 'rb')
-        )
-        await context.bot.send_document(
-            chat_id=update.effective_chat.id,
-            document=open("images/玩家操作指南.pdf", 'rb')
-        )
-        # await context.bot.send_photo(
-        #     chat_id=update.effective_chat.id,
-        #     photo=open("/Users/watson/PycharmProjects/tg-bot/img_1.png", 'rb')
-        # )

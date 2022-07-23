@@ -11,8 +11,5 @@ class AppCommandHandler(BaseHandler):
     async def handle(self, update: Update, context: CallbackContext):
         """
         小程序
-        :param update:
-        :param context:
-        :return:
         """
         await context.bot.send_game(chat_id=update.effective_chat.id, game_short_name=self.game_short_name)
