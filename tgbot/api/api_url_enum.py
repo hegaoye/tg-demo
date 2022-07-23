@@ -37,6 +37,11 @@ class Api(Enum):
     GET_GROUP_URL = "{host}/tgGroupBot/load/{group_id}/{bot_id}"
 
     """
+    獲取兩面盤投注信息，用於鍵盤價格設置 get
+    """
+    GET_BOTHSIDES_URL = "{host}/tgGroupBot/load/bothSides/{group_id}"
+
+    """
     根據群id後去群信息
     """
     GET_GROUP_BY_ID_URL = "{host}/group/load/id/{group_id}"

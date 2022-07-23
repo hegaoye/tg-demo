@@ -23,11 +23,11 @@ class GroupApiClient(Singleton):
             logging.info('檢查群是否合法 <===== %s', beanret)
 
             if beanret.code.__eq__(ResponseCode.Success.value):
-                return True
+                return True, beanret.data
         except Exception as e:
             logging.error("檢查群是否合法发生错误={}", e)
 
-        return False
+        return False, None
 
     def get_group(self, group_id) -> dict:
         """

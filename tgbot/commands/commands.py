@@ -84,6 +84,13 @@ class Command(Enum):
         else:
             return None, None, None
 
+    def key(self, bet_money):
+        """
+        格式化按鍵
+        :param bet_money:投注額度
+        """
+        return str(self.value).format(bet_money=bet_money)
+
 
 if __name__ == '__main__':
     # print(Command.INSTANCE.bet("/big 100"))
