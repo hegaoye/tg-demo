@@ -5,13 +5,13 @@ from telegram.ext import CallbackContext
 
 from tgbot.api.bet_api_client import BetApiClient
 from tgbot.api.group_api_client import GroupApiClient
-from tgbot.commands.base_handler import BaseHandler
+from tgbot.commands.base_handler import BaseHandler, baseHandler
 from tgbot.commands.commands import Command
 
 
-class StartCommandHandler(BaseHandler):
+class StartCommandHandler:
     def __init__(self):
-        BaseHandler.__init__(self)
+        self.baseHandler = baseHandler
         self.group_api_client = GroupApiClient()
         self.bet_api_client = BetApiClient()
 
@@ -20,7 +20,7 @@ class StartCommandHandler(BaseHandler):
         method to handle the /start command and create keyboard
         """
 
-        logging.info(self.begin_words)
+        logging.info(self.baseHandler.begin_words)
         logging.info("StartCommandHandler:%s", update.effective_user.id)
         logging.info("StartCommandHandler:%s", update.effective_user.username)
 

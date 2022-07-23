@@ -38,7 +38,7 @@ class BetApiClient(Singleton):
         關閉投注
         """
         try:
-            url = Api.BET_STOP_URL.value.format(host=self.__host)
+            url = Api.BET_STOP_URL.value.format(host=self.__host,group_id=chat_id,bot_id=bot_id)
             logging.info('關閉投注,url=====> %s', url)
             data = {
                 "groupId": chat_id,
@@ -46,7 +46,7 @@ class BetApiClient(Singleton):
             }
             beanret = http.put(url, data)
             logging.info('關閉投注,返回信息<===== %s', beanret)
-            if beanret.code.__eq__(ResponseCode.Exists.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
         except Exception as e:
@@ -67,7 +67,7 @@ class BetApiClient(Singleton):
             beanret = http.get(url)
             logging.info('檢查投注狀態 <===== %s', beanret)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
         except Exception as e:

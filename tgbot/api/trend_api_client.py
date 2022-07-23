@@ -22,7 +22,7 @@ class TrendApiClient(Singleton):
             beanret = http.get(url)
             logging.info('查看走势统计 <===== %s', beanret)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return beanret.data
 
         except Exception as e:

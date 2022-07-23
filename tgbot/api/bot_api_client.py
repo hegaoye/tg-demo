@@ -20,9 +20,9 @@ class BotApiClient(Singleton):
         logging.info('獲取機器人,url=====> %s', url)
         try:
             beanret = http.get(url)
-            logging.info('獲取機器人 <===== %s', beanret)
+            logging.info('獲取機器人 <===== %s', beanret.__dict__)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return beanret.data
 
         except Exception as e:

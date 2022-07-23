@@ -22,7 +22,7 @@ class GroupApiClient(Singleton):
             beanret = http.get(url)
             logging.info('檢查群是否合法 <===== %s', beanret)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value) and not beanret.data:
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
         except Exception as e:
             logging.error("檢查群是否合法发生错误={}", e)
@@ -40,7 +40,7 @@ class GroupApiClient(Singleton):
             beanret = http.get(url)
             logging.info('獲取群詳情 <===== %s', beanret)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value):
+            if beanret.code.__eq__(ResponseCode.Success.value):
                 return beanret.data
         except Exception as e:
             logging.error("獲取群詳情发生错误={}", e)

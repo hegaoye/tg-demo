@@ -3,12 +3,12 @@ import logging
 from telegram import Update, CallbackQuery
 from telegram.ext import CallbackContext
 
-from tgbot.commands.base_handler import BaseHandler
+from tgbot.commands.base_handler import baseHandler
 
 
-class CallbackHandler(BaseHandler):
+class CallbackHandler:
     def __init__(self):
-        BaseHandler.__init__(self)
+        self.baseHandler = baseHandler
 
     async def handle(self, update: Update, context: CallbackContext):
         """

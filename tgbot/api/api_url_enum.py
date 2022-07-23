@@ -34,7 +34,7 @@ class Api(Enum):
     """
     查詢群是否存在 get
     """
-    GET_GROUP_URL = "{host}/group/load/{group_id}/{bot_id}"
+    GET_GROUP_URL = "{host}/tgGroupBot/load/{group_id}/{bot_id}"
 
     """
     根據群id後去群信息

@@ -1,14 +1,14 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from tgbot.commands.base_handler import BaseHandler
-from tgbot.service.bet_order_service import BetOrderService
+from tgbot.api.bet_order_api_client import BetOrderApiClient
+from tgbot.commands.base_handler import baseHandler
 
 
-class MyBetCommandHandler(BaseHandler):
+class MyBetCommandHandler:
     def __init__(self):
-        BaseHandler.__init__(self)
-        self.bet_order_service = BetOrderService()
+        self.baseHandler = baseHandler
+        self.bet_order_api_client = BetOrderApiClient()
 
     async def handle(self, update: Update, context: CallbackContext):
         """
@@ -23,5 +23,5 @@ class MyBetCommandHandler(BaseHandler):
         user_id = update.effective_user.id
 
         # 查询投注详情
-        bet_detail = self.bet_order_service.get(chat_id, user_id, bot_id)
+        bet_detail = self.bet_order_api_client.get(chat_id, user_id, bot_id)
         await update.message.reply_text(bet_detail)

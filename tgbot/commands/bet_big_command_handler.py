@@ -1,13 +1,12 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from tgbot.base.sys_confg import SysConf
-from tgbot.commands.base_handler import BaseHandler
+from tgbot.commands.base_handler import baseHandler
 
 
-class BetCommandHandler(BaseHandler):
+class BetCommandHandler:
     def __init__(self):
-        BaseHandler.__init__(self)
+        self.baseHandler = baseHandler
 
     async def handle(self, update: Update, context: CallbackContext):
         """
