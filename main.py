@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     scheduler = AsyncIOScheduler(timezone='Asia/Shanghai')
     # 每2分鐘
+    # scheduler.add_job(TableJob().run, trigger="interval", seconds=10)
     scheduler.add_job(TableJob().run, "cron", minute='*/2')
     scheduler.start()
 
