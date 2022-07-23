@@ -66,7 +66,7 @@ class BetApiClient:
             beanret = http.get(url)
             logging.info('檢查投注狀態 <===== %s', beanret)
 
-            if not beanret.code.__eq__(ResponseCode.Success.value) and beanret.data:
+            if not beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
         except Exception as e:
