@@ -39,7 +39,7 @@ class Api(Enum):
     """
     獲取兩面盤投注信息，用於鍵盤價格設置 get
     """
-    GET_BOTHSIDES_URL = "{host}/tgGroupBot/load/bothSides/{group_id}"
+    GET_BOTHSIDES_URL = "{host}/groupBet/load/bothSides/{group_id}"
 
     """
     根據群id後去群信息

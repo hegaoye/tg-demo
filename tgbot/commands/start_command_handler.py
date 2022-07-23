@@ -36,7 +36,7 @@ class StartCommandHandler:
             return
 
         group_bet_data = self.group_bet_api_client.get_group_both_sides(chat_id)
-        bet_money = group_bet_data["defaultMoney"]
+        bet_money = int(group_bet_data["defaultMoney"]) if group_bet_data else 50
 
         # 开启投注
         self.bet_api_client.start(chat_id, bot_id)
