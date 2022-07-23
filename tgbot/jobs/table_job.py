@@ -6,6 +6,7 @@ from tgbot.api.bet_order_api_client import BetOrderApiClient
 from tgbot.api.trend_api_client import TrendApiClient
 from tgbot.base.sys_confg import SysConf
 from tgbot.base.trend_image import trend_image
+from tgbot.commands.base_handler import baseHandler
 
 
 class TableJob:
@@ -15,6 +16,7 @@ class TableJob:
 
     def __init__(self):
         self.sys_conf = SysConf()
+        self.baseHandler = baseHandler
         self.trend_api_client = TrendApiClient()
         self.bet_order_api_client = BetOrderApiClient()
         self.application = Application.builder().token(self.sys_conf.bot_token).build()
@@ -39,7 +41,7 @@ class TableJob:
         #         ['19:54', '7'],
         #         ['19:58', '8']]
 
-        data = self.trend_api_client.get_count(self.sys_conf.group_id)
+        data = self.trend_api_client.get_count(self.baseHandler.group_id)
         photo_path = trend_image(data)
         return photo_path
 
@@ -51,8 +53,8 @@ class TableJob:
 
         # 发送走势图片
         photo_path = self.__trend_photo()
-        await bot.send_photo(chat_id=self.sys_conf.group_id, photo=open(photo_path, 'rb'))
+        await bot.send_photo(chat_id=self.baseHandler.group_id, photo=open(photo_path, 'rb'))
 
         # 发送投注报表
-        result = self.bet_order_api_client.bet_order_count(self.sys_conf.group_id)
-        await bot.send_message(chat_id=self.sys_conf.group_id, text=result)
+        result = self.bet_order_api_client.bet_order_count(self.baseHandler.group_id)
+        await bot.send_message(chat_id=self.baseHandler.group_id, text=result)

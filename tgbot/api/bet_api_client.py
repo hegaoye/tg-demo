@@ -17,7 +17,7 @@ class BetApiClient(Singleton):
         開啟投注
         """
         try:
-            url = Api.BET_START_URL.value.format(host=self.__host)
+            url = Api.BET_START_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id)
             logging.info('開啟投注,url=====> %s', url)
             data = {
                 "groupId": chat_id,
@@ -38,7 +38,7 @@ class BetApiClient(Singleton):
         關閉投注
         """
         try:
-            url = Api.BET_STOP_URL.value.format(host=self.__host,group_id=chat_id,bot_id=bot_id)
+            url = Api.BET_STOP_URL.value.format(host=self.__host, group_id=chat_id, bot_id=bot_id)
             logging.info('關閉投注,url=====> %s', url)
             data = {
                 "groupId": chat_id,
