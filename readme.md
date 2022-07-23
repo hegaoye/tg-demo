@@ -43,3 +43,33 @@ scheduler.add_job(func=PushNewPodJob().run, trigger="interval", seconds=10)
 log.info('>>>>> 启动清理数据 任务  <<<<<')
 scheduler.add_job(func=ClearPodDataJob().run, trigger="interval", seconds=24 * 3600)
 ```
+
+
+```shell
+app -  小程序
+big - 投注大 100,如/big 100
+small - 投注小 100,如/small 100
+odd - 投注单 100,如/odd 100
+even - 投注双 100,如/even 100
+num - 投注数字 123 100,如/num 123 100
+my - 我的投注 
+start - 开启游戏
+stop - 关闭游戏
+help - 游戏说明
+bye - 移除机器人
+    
+    NUM = "num"
+    BIG = "big"
+    SMALL = "small"
+    ODD = "odd"
+    EVEN = "even"
+
+    START = "start"
+    STOP = "stop"
+    HELP_EN = "help"
+    BYE = "bye"
+    APP = "app"
+    MY_BET = "my"
+    
+    
+```

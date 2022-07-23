@@ -54,7 +54,5 @@ class Command(Enum):
 
 
 if __name__ == '__main__':
-    print(Command.INSTANCE.value[0])
-    print(Command.INSTANCE.value[1])
     print(Command.INSTANCE.bet("/big 100"))
     print(Command.INSTANCE.bet("/num 123 100"))
