@@ -17,4 +17,4 @@ class CallbackHandler:
         query: CallbackQuery = update.callback_query
         logging.info("CallbackHandler:%s", update.effective_user.id)
         logging.info("CallbackHandler:%s", update.effective_user.username)
-        await query.answer(text="open", url=self.game_url)
+        await query.answer(text="open", url=self.baseHandler.game_url)
