@@ -42,7 +42,7 @@ class TableJob:
         #         ['19:58', '8']]
 
         data = self.trend_api_client.get_count(self.baseHandler.group_id)
-        if len(data) > 0:
+        if data and len(data) > 0:
             photo_path = trend_image(data)
             return photo_path
         else:
