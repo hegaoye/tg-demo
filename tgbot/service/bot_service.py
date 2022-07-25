@@ -56,7 +56,7 @@ class BotService:
         # 群异动监听，加入，退出等
         self.application.add_handler(MessageHandler(filters.CHAT, callback=MemberJoinOrLeftGroupHandler().handle))
 
-        #
+        # 小程序跳轉
         self.application.add_handler(CallbackQueryHandler(CallbackHandler().handle))
 
         self.application.run_polling()

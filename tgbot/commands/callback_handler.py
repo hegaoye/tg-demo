@@ -12,7 +12,7 @@ class CallbackHandler:
 
     async def handle(self, update: Update, context: CallbackContext):
         """
-        callback method handling button press
+        app 命令跳轉
         """
         query: CallbackQuery = update.callback_query
         logging.info("CallbackHandler:%s", update.effective_user.id)
