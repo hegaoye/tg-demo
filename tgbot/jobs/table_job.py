@@ -56,7 +56,8 @@ class TableJob:
 
         # 发送走势图片
         photo_path = self.__trend_photo()
-        await bot.send_photo(chat_id=self.baseHandler.group_id, photo=open(photo_path, 'rb'))
+        if photo_path:
+            await bot.send_photo(chat_id=self.baseHandler.group_id, photo=open(photo_path, 'rb'))
 
         # 发送投注报表
         result = self.bet_order_api_client.bet_order_count(self.baseHandler.group_id)
