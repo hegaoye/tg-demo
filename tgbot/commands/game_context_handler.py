@@ -54,6 +54,9 @@ class GameContextHandler:
 
         else:
             # 投注命令
+            if not text.startswith("/"):
+                return
+
             # 檢查是否封盤，或者暫停
             is_start = self.bet_api_client.check_status(chat_id, bot_id)
             if not is_start:
