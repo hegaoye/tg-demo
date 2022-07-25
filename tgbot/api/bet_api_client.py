@@ -28,6 +28,7 @@ class BetApiClient(Singleton):
             if beanret.code.__eq__(ResponseCode.Success.value):
                 return True
 
+
         except Exception as e:
             logging.error(e)
 

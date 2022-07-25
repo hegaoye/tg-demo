@@ -25,6 +25,7 @@ class BotApiClient(Singleton):
             if beanret.code.__eq__(ResponseCode.Success.value):
                 return beanret.data
 
+
         except Exception as e:
             logging.error("獲取機器人发生错误={}", e)
 

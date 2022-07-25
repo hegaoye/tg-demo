@@ -47,7 +47,7 @@ class StartCommandHandler:
         kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
 
         # 开启投注
-        is_start = self.bet_api_client.start(chat_id, bot_id, user_id)
+        is_start,msg = self.bet_api_client.start(chat_id, bot_id, user_id)
         if is_start:
             # 发送消息
             await context.bot.send_message(chat_id=chat_id, text="游戏已被 @" + username + " 开启，可以开始游戏", reply_markup=kbd)

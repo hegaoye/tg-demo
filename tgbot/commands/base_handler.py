@@ -22,7 +22,7 @@ class BaseHandler(Singleton):
         """
         # 機器人信息
         bot_api_client = BotApiClient()
-        bot = bot_api_client.get(self.bot_name)
+        bot= bot_api_client.get(self.bot_name)
         self.bot_token = bot["tgToken"]
 
         # 群信息

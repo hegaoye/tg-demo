@@ -25,8 +25,8 @@ class BetOrderApiClient(Singleton):
             logging.info('创建tg 投注订单,返回信息<===== %s', beanret.to_json())
             if beanret.code.__eq__(ResponseCode.Success.value):
                 return True, "投注成功"
-            else:
-                return False, "投注失败"
+            elif beanret.code.__eq__(ResponseCode.BET_LOCK.value):
+                return False, "封盘中请投注下一轮"
         except Exception as e:
             logging.error(e)
             return False, "投注失败"

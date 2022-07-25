@@ -7,3 +7,4 @@ class ResponseCode(Enum):
     """
     Success = "0000"
     Exists = "9005"
+    BET_LOCK = "1003"
