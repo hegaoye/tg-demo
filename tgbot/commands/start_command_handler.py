@@ -40,12 +40,9 @@ class StartCommandHandler:
         bet_money = int(group_bet_data["defaultMoney"]) if group_bet_data else 50
 
         # 键盘布局
-        kbd_layout = [
-            [Command.BIG_KEYBOARD.key(bet_money), Command.SMALL_KEYBOARD.key(bet_money),
-             Command.ODD_KEYBOARD.key(bet_money),
-             Command.EVEN_KEYBOARD.key(bet_money)],
-            [Command.QUERY_BET_KEYBOARD.value, Command.APPLET_KEYBOARD.value, Command.HELP_KEYBOARD.value]
-        ]
+        kbd_layout = [[Command.BIG_KEYBOARD.key(bet_money), Command.SMALL_KEYBOARD.key(bet_money),
+                       Command.ODD_KEYBOARD.key(bet_money), Command.EVEN_KEYBOARD.key(bet_money)],
+                      [Command.QUERY_BET_KEYBOARD.value, Command.APPLET_KEYBOARD.value, Command.HELP_KEYBOARD.value]]
 
         kbd = ReplyKeyboardMarkup(keyboard=kbd_layout, resize_keyboard=True)
 
