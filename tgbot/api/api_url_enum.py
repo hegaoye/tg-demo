@@ -74,4 +74,4 @@ class Api(Enum):
     """
     会话地址 get
     """
-    TOKEN_URL = "{host}/login/{group_id}/{username}"
+    TOKEN_URL = "{host}/login/token/{group_id}/{username}"
