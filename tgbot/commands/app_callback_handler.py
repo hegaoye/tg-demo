@@ -23,4 +23,7 @@ class AppCallbackHandler:
         username = update.effective_user.username
         token = self.token_api_client.token(chat_id, username)
         game_url = self.baseHandler.game_url + "?token=" + token + "&username=" + username
-        await query.answer(text="open", url=game_url)
+        if game_url:
+            await query.answer(text="open", url=game_url)
+        else:
+            await query.answer(text="open", url=self.baseHandler.game_url)
