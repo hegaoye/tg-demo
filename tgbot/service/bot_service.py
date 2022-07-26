@@ -4,7 +4,7 @@ from tgbot.base.sys_confg import SysConf
 from tgbot.commands.app_command_handler import AppCommandHandler
 from tgbot.commands.bet_command_handler import BetCommandHandler
 from tgbot.commands.bye_command_handler import ByeCommandHandler
-from tgbot.commands.callback_handler import CallbackHandler
+from tgbot.commands.app_callback_handler import AppCallbackHandler
 from tgbot.commands.commands import Command
 from tgbot.commands.game_context_handler import GameContextHandler
 from tgbot.commands.help_command_handler import HelpCommandHandler
@@ -57,6 +57,6 @@ class BotService:
         self.application.add_handler(MessageHandler(filters.CHAT, callback=MemberJoinOrLeftGroupHandler().handle))
 
         # 小程序跳轉
-        self.application.add_handler(CallbackQueryHandler(CallbackHandler().handle))
+        self.application.add_handler(CallbackQueryHandler(AppCallbackHandler().handle))
 
         self.application.run_polling()

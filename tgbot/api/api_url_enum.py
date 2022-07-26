@@ -70,3 +70,8 @@ class Api(Enum):
     獲取機器人 get
     """
     GET_BOT_URL = "{host}/bot/load/name/{bot_name}"
+
+    """
+    会话地址 get
+    """
+    TOKEN_URL = "{host}/login/{group_id}/{username}"
