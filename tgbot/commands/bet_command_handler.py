@@ -30,4 +30,9 @@ class BetCommandHandler:
         user_id = update.effective_user.id
         username = update.effective_user.username
         is_bet, msg = self.bet_order_service.build(chat_id, user_id, bet_code, bot_id, bet_money, bet_num)
-        await update.message.reply_text("@" + username + " " + msg)
+        if is_bet:
+            # 查询投注详情
+            bet_detail = self.bet_order_service.get(chat_id, user_id, bot_id)
+            await update.message.reply_text(bet_detail)
+        else:
+            await update.message.reply_text("@" + username + " " + msg)
