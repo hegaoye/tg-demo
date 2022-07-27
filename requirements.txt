@@ -22,3 +22,5 @@ peewee~=3.14.8
 PyMySQL~=1.0.2
 numpy==1.21.2
 threadpool==1.3.2
+
+tronapi~=3.1.6
